@@ -66,10 +66,10 @@ static i2s_chan_handle_t tx_handle;
 static bool is_sink_streaming;
 
 static int sink_gain = 1;
-static int sink_channels = 2;
+static int sink_channels = 1;
 
 // provide enough space for 2 channels - the way channels is done in this example is a bit odd
-static int16_t buffer[DMA_BUFFER_SAMPLES * 2];
+static int16_t buffer[DMA_BUFFER_SAMPLES * 1];
 static void fill_buffer(void)
 {
   size_t bytes_written;
@@ -84,7 +84,7 @@ static void fill_buffer(void)
       buffer[i] = buffer[i] * 0.5;
     }
     if(tx_handle != NULL)
-      i2s_channel_write(tx_handle, buffer, DMA_BUFFER_SAMPLES * sink_channels * sizeof(int16_t), &bytes_written, 0);
+      i2s_channel_write(tx_handle, buffer, DMA_BUFFER_SAMPLES * 1 * sizeof(int16_t), &bytes_written, 0);
   }
 }
 
@@ -151,7 +151,7 @@ static int btstack_audio_esp32_sink_init(
   
   i2s_std_config_t std_cfg = {
       .clk_cfg = I2S_STD_CLK_DEFAULT_CONFIG(samplerate),
-      .slot_cfg = I2S_STD_PHILIPS_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_STEREO),
+      .slot_cfg = I2S_STD_PHILIPS_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_MONO),
       .gpio_cfg = {
           .mclk = I2S_GPIO_UNUSED,
           .bclk = I2S_SPEAKER_SERIAL_CLOCK,
