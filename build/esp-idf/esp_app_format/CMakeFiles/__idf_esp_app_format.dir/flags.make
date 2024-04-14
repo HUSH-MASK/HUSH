@@ -8,5 +8,5 @@ C_INCLUDES = -I/home/lallo/uni/ICT/esp32_hsp_bluetooth/esp32-hsp-hf/build/config
 
 C_FLAGS = -mlongcalls -Wno-frame-address  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=/home/lallo/uni/ICT/esp32_hsp_bluetooth/esp32-hsp-hf=. -fmacro-prefix-map=/home/lallo/esp/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration
 
-# Custom defines: esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj_DEFINES = PROJECT_VER="fff9ba8-dirty"; PROJECT_NAME="hfp_hf_demo"
+# Custom defines: esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj_DEFINES = PROJECT_VER="67ba0bf-dirty"; PROJECT_NAME="hfp_hf_demo"
 

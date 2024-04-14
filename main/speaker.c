@@ -66,17 +66,18 @@ static i2s_chan_handle_t tx_handle;
 static bool is_sink_streaming;
 
 static int sink_gain = 1;
-static int sink_channels = 1;
+#define SINK_CHANNELS 1
+static int sink_channels = SINK_CHANNELS;
 
 // provide enough space for 2 channels - the way channels is done in this example is a bit odd
-static int16_t buffer[DMA_BUFFER_SAMPLES * 1];
+static int16_t buffer[DMA_BUFFER_SAMPLES * SINK_CHANNELS];
 static void fill_buffer(void)
 {
   size_t bytes_written;
   if (playback_callback)
   {
     (*playback_callback)(buffer, DMA_BUFFER_SAMPLES);
-    for (int i = 0; i < DMA_BUFFER_SAMPLES * sink_channels; i++)
+    for (int i = 0; i < DMA_BUFFER_SAMPLES * SINK_CHANNELS; i++)
     {
       // gain doesn't seem to be wired up
       // buffer[i] = buffer[i] * sink_gain;
@@ -84,7 +85,8 @@ static void fill_buffer(void)
       buffer[i] = buffer[i] * 0.5;
     }
     if(tx_handle != NULL)
-      i2s_channel_write(tx_handle, buffer, DMA_BUFFER_SAMPLES * 1 * sizeof(int16_t), &bytes_written, 0);
+      i2s_channel_write(tx_handle, buffer, DMA_BUFFER_SAMPLES * SINK_CHANNELS * sizeof(int16_t), &bytes_written, 0);
+    //i2s_channel_write(tx_handle, buffer, sizeof(int16_t) * DMA_BUFFER_SAMPLES * 2, &bytes_written, 0);
   }
 }
 
@@ -151,7 +153,7 @@ static int btstack_audio_esp32_sink_init(
   
   i2s_std_config_t std_cfg = {
       .clk_cfg = I2S_STD_CLK_DEFAULT_CONFIG(samplerate),
-      .slot_cfg = I2S_STD_PHILIPS_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_MONO),
+      .slot_cfg = I2S_STD_MSB_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_MONO),
       .gpio_cfg = {
           .mclk = I2S_GPIO_UNUSED,
           .bclk = I2S_SPEAKER_SERIAL_CLOCK,
