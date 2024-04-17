@@ -1,2 +1,0 @@
-/home/lallo/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-ar qc libmain.a CMakeFiles/__idf_main.dir/sco_demo_util.c.obj CMakeFiles/__idf_main.dir/microphone.c.obj CMakeFiles/__idf_main.dir/speaker.c.obj CMakeFiles/__idf_main.dir/hfp_hf_demo.c.obj CMakeFiles/__idf_main.dir/main.c.obj
-/home/lallo/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-ranlib libmain.a
