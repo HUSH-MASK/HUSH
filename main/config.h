@@ -16,12 +16,14 @@
 
 // how often should we check for new samples from the microphone
 #define DRIVER_POLL_INTERVAL_MS 5
-// DMA settings
+// DMA settings for speakers
 #define DMA_BUFFER_COUNT 12
-//#define DMA_BUFFER_COUNT 12
 // keep this fairly low to for low latency
 #define DMA_BUFFER_SAMPLES 128
-//#define DMA_BUFFER_SAMPLES 128
+
+//DMA settings for microphone
+#define DMA_BUFFER_MIC_COUNT 1024
+#define DMA_BUFFER_MIC_SAMPLES 4
 
 // speaker settings
 #define I2S_SPEAKER_DEVICE I2S_NUM_1

@@ -76,6 +76,7 @@ static int btstack_audio_esp32_source_init(
     void (*recording)(const int16_t *buffer, uint16_t num_samples))
 {
     recording_callback = recording;
+    
     /*
         i2s_std_config_t config = {
             .mode = I2S_MODE_MASTER | I2S_MODE_RX,
@@ -87,7 +88,7 @@ static int btstack_audio_esp32_source_init(
             .dma_buf_len = DMA_BUFFER_SAMPLES, // Size of each DMA buffer in samples. Max 1024.
             .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1};
 
-
+    
         i2s_pin_config_t pins = {
             .bck_io_num = I2S_MIC_SERIAL_CLOCK,
             .ws_io_num = I2S_MIC_LEFT_RIGHT_CLOCK,
@@ -107,8 +108,8 @@ static int btstack_audio_esp32_source_init(
     i2s_chan_config_t chan_cfg = {
         .id = I2S_MIC_DEVICE,
         .role = I2S_ROLE_MASTER,
-        .dma_frame_num = DMA_BUFFER_SAMPLES,
-        .dma_desc_num = DMA_BUFFER_COUNT
+        .dma_frame_num = DMA_BUFFER_MIC_SAMPLES,
+        .dma_desc_num = DMA_BUFFER_MIC_COUNT
 
     };
     /* Allocate a new RX channel and get the handle of this channel */
